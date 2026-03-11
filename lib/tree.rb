@@ -29,4 +29,21 @@ class Tree
     pretty_print(node.left, "#{prefix}#{is_left ? '    ' : '│   '}", is_left: true)
   end
 
+  def include?(value)
+    current_node = @root
+    while current_node
+      return true if current_node.data == value
+      if value < current_node.data
+        current_node = current_node.left
+      elsif value > current_node.data
+        current_node = current_node.right
+      end
+    end
+    false
+  end
+
+  def insert(value)
+    
+  end
+
 end
