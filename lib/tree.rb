@@ -44,6 +44,27 @@ class Tree
 
   def insert(value)
     
+    current_node = @root
+    previous_value = nil
+    return "its already in there" if self.include?(value)
+    while current_node.data != previous_value
+      if value < current_node.data 
+          previous_value = current_node.data
+          if current_node.left != nil
+            current_node = current_node.left 
+          end
+      elsif value > current_node.data 
+          previous_value = current_node.data
+          if current_node.right != nil
+            current_node = current_node.right 
+          end
+      end
+    end
+    if value > previous_value
+      current_node.right = Node.new(value,nil,nil)
+    else 
+      current_node.left = Node.new(value,nil,nil)
+    end
   end
 
 end
