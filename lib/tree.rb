@@ -46,25 +46,27 @@ class Tree
     
     current_node = @root
     previous_value = nil
-    return "its already in there" if self.include?(value)
+    return if self.include?(value)
     while current_node.data != previous_value
+      previous_value = current_node.data
       if value < current_node.data 
-          previous_value = current_node.data
-          if current_node.left != nil
+          unless current_node.left.nil?
             current_node = current_node.left 
           end
       elsif value > current_node.data 
-          previous_value = current_node.data
-          if current_node.right != nil
+          unless current_node.right.nil?
             current_node = current_node.right 
           end
       end
     end
     if value > previous_value
       current_node.right = Node.new(value,nil,nil)
+    elsif previous_value == nil
+      return  Node.new(value,nil,nil)
     else 
       current_node.left = Node.new(value,nil,nil)
     end
+    return @root
   end
 
 end
