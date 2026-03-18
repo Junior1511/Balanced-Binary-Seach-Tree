@@ -69,4 +69,33 @@ class Tree
     return @root
   end
 
+  def delete(value)
+    # ends the method early if it does not include the value
+    return unless self.include?(value) 
+    current_node = @root
+    previous_node = nil
+    while current_node.data != value
+      if value < current_node.data 
+        previous_node = current_node
+        current_node = current_node.left 
+      elsif value > current_node.data 
+        previous_node = current_node
+        current_node = current_node.right 
+      end
+    end
+    # need to make 3 cases
+    # if left and right of current are nil
+    # if neither of them is nil
+    # if either left or right are nil
+    # in this ^^ specific order
+    if current_node.left == nil && current_node.right == nil
+      if current_node.data < previous_node.data 
+        previous_node.left = nil
+      else 
+        previous_node.right = nil
+      end
+
+    end
+  end
+
 end
