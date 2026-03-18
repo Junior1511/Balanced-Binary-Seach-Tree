@@ -94,7 +94,17 @@ class Tree
       else 
         previous_node.right = nil
       end
-
+    elsif (current_node.left == nil && current_node.right != nil) || (current_node.left != nil && current_node.right == nil)
+      if current_node.left != nil
+        next_node = current_node.left
+        current_node.data = next_node.data
+        current_node.left = next_node.left
+        current_node.right = next_node.right
+      else
+        next_node = current_node.right
+        current_node.left = next_node.left
+        current_node.right = next_node.right
+      end
     end
   end
 
