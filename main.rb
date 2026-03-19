@@ -6,5 +6,5 @@ t.insert(2)
 t.insert(59)
 t.pretty_print
 # for later
-t.delete(3)
+t.delete(4)
 t.pretty_print

@@ -83,11 +83,7 @@ class Tree
         current_node = current_node.right 
       end
     end
-    # need to make 3 cases
-    # if left and right of current are nil
-    # if neither of them is nil
-    # if either left or right are nil
-    # in this ^^ specific order
+    # 3 cases
     if current_node.left == nil && current_node.right == nil
       if current_node.data < previous_node.data 
         previous_node.left = nil
@@ -105,6 +101,17 @@ class Tree
         current_node.left = next_node.left
         current_node.right = next_node.right
       end
+    else
+      previous_node = current_node.right
+      eventual_successor = previous_node
+      while eventual_successor.left != nil
+        previous_node = eventual_successor
+        eventual_successor = eventual_successor.left
+      end
+      copy_c_n_d = current_node.data
+      current_node.data = eventual_successor.data
+      eventual_successor.data = copy_c_n_d
+      previous_node.left = eventual_successor.right
     end
   end
 
