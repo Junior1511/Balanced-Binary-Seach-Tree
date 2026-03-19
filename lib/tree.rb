@@ -43,7 +43,10 @@ class Tree
   end
 
   def insert(value)
-    
+    if @root.nil?
+      @root = Node.new(value)
+      return @root
+    end
     current_node = @root
     previous_value = nil
     return if self.include?(value)
@@ -61,8 +64,6 @@ class Tree
     end
     if value > previous_value
       current_node.right = Node.new(value,nil,nil)
-    elsif previous_value == nil
-      return  Node.new(value,nil,nil)
     else 
       current_node.left = Node.new(value,nil,nil)
     end
@@ -112,6 +113,15 @@ class Tree
       current_node.data = eventual_successor.data
       eventual_successor.data = copy_c_n_d
       previous_node.left = eventual_successor.right
+    end
+  end
+
+  def level_order
+    # returns enumerable if no block is given
+    return to_enum(:level_order) unless block_given?
+    # I think this right, Hey don't be too hard on yourself, you got this, keep moving forward!
+    for i in self
+      yield(i)
     end
   end
 
