@@ -116,13 +116,22 @@ class Tree
     end
   end
 
-  def level_order
+  def level_order(node = @root)
+    return if node.nil?
     # returns enumerable if no block is given
     return to_enum(:level_order) unless block_given?
+    # queue where we store locations of nodes
+    queue = []
+    # now I need a methods that grabs values and throws them in the queue
+    def idk_yet
+      
+    end
     # I think this right, Hey don't be too hard on yourself, you got this, keep moving forward!
     for i in self
       yield(i)
     end
+
+    self
   end
 
 end
